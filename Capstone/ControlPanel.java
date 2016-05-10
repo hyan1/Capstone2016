@@ -27,12 +27,12 @@ public class ControlPanel extends JPanel
         this.square = new JButton("Square");
         
         this.add(this.colorButton);
-        newColor = canvas.getColor();        
+              
         this.add(this.circle);
         this.add(this.square);
         
         squareColor = new JPanel();
-        newColor = canvas.getColor();
+        
         squareColor.setBackground(newColor);
         squareColor.setPreferredSize(new Dimension(10, 10));
         this.add(squareColor);
@@ -48,22 +48,7 @@ public class ControlPanel extends JPanel
     {
         public void actionPerformed(ActionEvent event)
         {
-            if(event.getActionCommand().equals("Color"))
-            {
-                canvas.pickColor();
-                System.out.println("Select Color");
-                newColor = canvas.getColor();
-                squareColor.setBackground(newColor);
-            }
-            else if(event.getActionCommand().equals("Circle"))
-            {
-                canvas.addCircle();
-            }
-            else if(event.getActionCommand().equals("Square"))
-            {
-                canvas.addSquare();
-            }
-            canvas.repaint();
+            
         }
     }
 }

@@ -32,31 +32,13 @@ public class DrawingPanel extends JPanel
     class TheMouseListener implements MouseMotionListener, MouseListener
     {
         private boolean inside;
-        public void mouseDragged(MouseEvent event)
-        {
-            currentShape.move(event.getX(), event.getY());
-            repaint();
-        }
+        public void mouseDragged(MouseEvent event){}
         public void mouseMoved(MouseEvent event){}
         
         
         public void mousePressed(MouseEvent event)
         {
-           inside = false;
-
-            for(Shape shp: shapeList)
-            {
-                if (shp.isInside(new Point2D.Double(event.getX(), event.getY())))
-                {
-                    inside = true;
-                    currentShape = shp;
-                }            
-            }   
-            if(inside==false)
-            {
-                currentShape = null;
-            }            
-            repaint();
+           
         }
 
         public void mouseReleased(MouseEvent event) {}
@@ -65,36 +47,13 @@ public class DrawingPanel extends JPanel
         public void mouseExited(MouseEvent event) {}
     }
         
-        
-    
-    public Color getColor()
-    {
-        return this.color;
-    }
-    public Dimension getPreferredSize()
-    {
-        return dimension;
-    }
-    public void pickColor()
-    {
-        color = JColorChooser.showDialog(this, "Pick Color", color);
-    }
-    public void addCircle()
-    {
-        shapeList.add(new Circle(startPoint, startRadius, color));
-    }
-    
-    public void addSquare()
-    {
-        shapeList.add(new Square(startPoint, startRadius, color));
-    }
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
         super.paintComponent(g);
         for(Shape shp: shapeList)
         {
-            shp.draw(g2, currentShape == null? true: (!(currentShape == shp)));
+            
         }
     }
 }

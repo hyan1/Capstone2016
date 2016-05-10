@@ -1,38 +1,43 @@
 import javax.swing.*;
 import java.awt.*;
-
   
 /**
  *
  */
-public class DrawingEditor extends JFrame
-{
-  private ControlPanel control;
-  private DrawingPanel canvas;
-  
-  private int WINDOW_HEIGHT = 1000;
-  private int WINDOW_LENGTH = 1000;
+public class DrawingEditor extends JPanel
+{  
+  private JButton squares[][];
   /**
    * 
    */
   public DrawingEditor()
   {
-      this.setTitle("Drawing Editor");
-      this.setLayout(new BorderLayout());
-      this.setSize(WINDOW_LENGTH, WINDOW_HEIGHT);
-      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
-      canvas = new DrawingPanel();
-      control = new ControlPanel(canvas);
-        
-      this.add(canvas, BorderLayout.CENTER);
-      this.add(control, BorderLayout.SOUTH);
-        
-      this.setVisible(true);
+      this.setSize(400,400);
+      this.setLayout(new GridLayout(10,10));
+      squares = new JButton[10][10];
+      buildButtons();      
+  }
+  
+  private void buildButtons()
+  {
+      for(int i = 0; i < 10; i++)
+      {
+          for(int j = 0; j < 10; j++)
+          {
+              squares[i][j] = new JButton();
+              squares[i][j].setSize(400,400);
+              this.add(squares[i][j]);
+          }
+      }
   }
   
   public static void main(String[] args)
   {
-      DrawingEditor editor = new DrawingEditor();
+      DrawingEditor d = new DrawingEditor();
+      JFrame frame = new JFrame("Minesweeper");
+      frame.add(d);
+      frame.setSize(400,400);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setVisible(true);
   }
 }
